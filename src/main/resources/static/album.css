@@ -1,0 +1,19 @@
+main{
+background-color: #e9e5fa;
+}
+.container .table
+{
+text-align:center;
+margin: auto auto;
+width:1000px;
+}
+
+.container .table img{
+    width: 7.8em;
+	opacity: .9;
+	margin: 0px;
+	border: 5px solid #F5F5F5;
+}
+.container .table  img:hover{
+	opacity: 1;
+}
