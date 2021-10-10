@@ -17,9 +17,11 @@ public class RoutesController {
         return "hello"; // this represents the name of the html template which will be rendered
     }
     @GetMapping("/capitalize/{name}")
-    @ResponseBody
-    public String capitalize(
-            @PathVariable String name) {
-        return name.toUpperCase();
+//    @ResponseBody
+    public String capitalize(@PathVariable String name, Model model) {
+       model.addAttribute("name", name.toUpperCase());
+        return "capitalize";
     }
+
+
 }
