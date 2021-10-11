@@ -4,12 +4,17 @@ package com.asac.helloworld.model;
 import org.attoparser.trace.MarkupTraceEvent;
 
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class Album {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
 
  String title;
  String artist;
