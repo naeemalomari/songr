@@ -60,10 +60,10 @@ public String getClassAlbum(Model model ) {
 return "album";
     }
 
-//    @PostMapping("/albums")
-//    public RedirectView createNewBlogPost(@ModelAttribute Album album) {
-//        albumRepository.save(album);
-//        return new RedirectView("album");
-//    }
+    @PostMapping("/albums")
+    public RedirectView createNewBlogPost(@ModelAttribute Album album) {
+        albumRepository.save(album);
+        return new RedirectView("album");
+    }
 
 }

@@ -32,6 +32,10 @@ public class Album {
 //        albums=new ArrayList<>();
     }
 
+    public Album() {
+
+    }
+
     public String getTitle() {
         return title;
     }
