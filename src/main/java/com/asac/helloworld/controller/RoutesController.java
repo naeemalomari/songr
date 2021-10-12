@@ -51,6 +51,8 @@ public class RoutesController {
 //        model.addAttribute("album", album);
 //        return "album";
 //    }
+
+
     @GetMapping("/albums")
     public String getAlbum(Model model) {
         model.addAttribute("albums", albumRepository.findAll());

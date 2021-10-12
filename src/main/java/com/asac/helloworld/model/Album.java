@@ -23,17 +23,13 @@ public class Album {
  String imageUrl;
 
     public Album() {
-
     }
-
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public String getTitle() {
         return title;
     }
@@ -74,4 +70,15 @@ public class Album {
         this.imageUrl = imageUrl;
     }
 
+    @Override
+    public String toString() {
+        return "Album{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", artist='" + artist + '\'' +
+                ", songCount=" + songCount +
+                ", length=" + length +
+                ", imageUrl='" + imageUrl + '\'' +
+                '}';
+    }
 }
