@@ -9,11 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.ArrayList;
-import java.util.Locale;
 
 @Controller
-@RequestMapping("/")
 public class RoutesController {
 
     @Autowired
@@ -39,7 +36,7 @@ public class RoutesController {
         return "homepage";
     }
 
-//    @ResponseBody
+    //    @ResponseBody
 //    @GetMapping("/albums")
 //    public String getClassAlbum(Model model ) {
 //        ArrayList<Album> album = new ArrayList<>();
@@ -54,16 +51,16 @@ public class RoutesController {
 //        model.addAttribute("album", album);
 //        return "album";
 //    }
-@GetMapping("/album")
-public String getClassAlbum(Model model ) {
-        model.addAttribute("album", albumRepository.findAll());
-return "album";
+    @GetMapping("/albums")
+    public String getAlbum(Model model) {
+        model.addAttribute("albums", albumRepository.findAll());
+        return "albums";
     }
 
     @PostMapping("/albums")
-    public RedirectView createNewBlogPost(@ModelAttribute Album album) {
+    public RedirectView createNewAlbumPost(@ModelAttribute Album album) {
         albumRepository.save(album);
-        return new RedirectView("album");
+        return new RedirectView("albums");
     }
 
 }

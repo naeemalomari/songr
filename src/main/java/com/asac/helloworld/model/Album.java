@@ -19,21 +19,19 @@ public class Album {
  String title;
  String artist;
  int songCount;
- int length;
+ long length;
  String imageUrl;
-//private ArrayList<String> albums;
-
-    public Album(String title, String artist, int songCount, int length, String imageUrl) {
-        this.title = title;
-        this.artist = artist;
-        this.songCount = songCount;
-        this.length = length;
-        this.imageUrl = imageUrl;
-//        albums=new ArrayList<>();
-    }
 
     public Album() {
 
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -60,11 +58,11 @@ public class Album {
         this.songCount = songCount;
     }
 
-    public int getLength() {
+    public long getLength() {
         return length;
     }
 
-    public void setLength(int length) {
+    public void setLength(long length) {
         this.length = length;
     }
 
