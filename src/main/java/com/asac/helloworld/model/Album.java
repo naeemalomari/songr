@@ -4,29 +4,32 @@ package com.asac.helloworld.model;
 import org.attoparser.trace.MarkupTraceEvent;
 
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class Album {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
 
  String title;
  String artist;
  int songCount;
- int length;
+ long length;
  String imageUrl;
-//private ArrayList<String> albums;
 
-    public Album(String title, String artist, int songCount, int length, String imageUrl) {
-        this.title = title;
-        this.artist = artist;
-        this.songCount = songCount;
-        this.length = length;
-        this.imageUrl = imageUrl;
-//        albums=new ArrayList<>();
+    public Album() {
     }
-
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
     public String getTitle() {
         return title;
     }
@@ -51,11 +54,11 @@ public class Album {
         this.songCount = songCount;
     }
 
-    public int getLength() {
+    public long getLength() {
         return length;
     }
 
-    public void setLength(int length) {
+    public void setLength(long length) {
         this.length = length;
     }
 
@@ -67,4 +70,21 @@ public class Album {
         this.imageUrl = imageUrl;
     }
 
+    @Override
+    public String toString() {
+        return "Album{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", artist='" + artist + '\'' +
+                ", songCount=" + songCount +
+                ", length=" + length +
+                ", imageUrl='" + imageUrl + '\'' +
+                '}';
+    }
+
+
+
+
+
+    
 }
