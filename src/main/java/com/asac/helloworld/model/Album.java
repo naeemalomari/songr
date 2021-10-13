@@ -1,12 +1,7 @@
 package com.asac.helloworld.model;
 
-
-import org.attoparser.trace.MarkupTraceEvent;
-
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 
 @Entity
@@ -16,20 +11,46 @@ public class Album {
     @Column(name = "id", nullable = false)
     private Long id;
 
- String title;
- String artist;
- int songCount;
- long length;
- String imageUrl;
+    String title;
+    String artist;
+    int songCount;
+    long length;
+    String imageUrl;
+
+
+    @OneToMany(mappedBy = "album")
+    List<Song> songsList;
+
+
+    public Album(Long id, String title, String artist, int songCount, long length, String imageUrl, List<Song> songsList) {
+        this.id = id;
+        this.title = title;
+        this.artist = artist;
+        this.songCount = songCount;
+        this.length = length;
+        this.imageUrl = imageUrl;
+        this.songsList = songsList;
+    }
 
     public Album() {
     }
+
+    public List<Song> getSongsList() {
+        return songsList;
+    }
+
+    public void setSongs(Song song) {
+        songsList.add(song);
+    }
+
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getTitle() {
         return title;
     }
@@ -81,12 +102,6 @@ public class Album {
                 ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }
-
-
-
-
-
-
 
 
 }
