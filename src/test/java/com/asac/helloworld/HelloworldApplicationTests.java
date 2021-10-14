@@ -1,26 +1,47 @@
 package com.asac.helloworld;
 
-import com.asac.helloworld.model.Album;
+import com.asac.helloworld.controller.RoutesController;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.test.web.servlet.MockMvc;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.containsString;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
+class HelloWorldTest {
 
-@SpringBootTest
-class DemoApplicationTests {
+    @Autowired
+    private MockMvc mockMvc;
+    @Autowired
+    RoutesController helloTest;
+    @Autowired
+    TestRestTemplate testRestTemplate;
+    @LocalServerPort
+    private int port;
 
-//	@Test
-//	void testConstructor() {
-//		Album album = new Album("Title","Artist",10,120,"https://editorial.uefa.com/resources/026c-12f705c46a6c-9f2eb0579483-1000/messi_graphic.jpg");
-//		album.setTitle("Title");
-//		assertEquals("Title",album.getTitle());
-//		album.setArtist("Artist");
-//		assertEquals("Artist",album.getArtist());
-//		album.setSongCount(20);
-//		assertEquals(20,album.getSongCount());
-//		album.setLength(10);
-//		assertEquals(10 , album.getLength());
-//	}
+    @Test
+    public void testLoading() throws Exception{
+        assertThat(helloTest).isNotNull();
+    }
 
+    @Test
+    public void testGreetingReturnData() throws Exception{
+        assertThat(this.testRestTemplate.getForObject("http://localhost:" + port + "/hello",
+                String.class)).contains("Hello, world!");
+    }
+
+    @Test
+    public void testRequestStatusAndReturn() throws Exception{
+        this.mockMvc.perform(get("/hello")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("Hello, world!")));
+    }
 }
-
