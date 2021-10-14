@@ -63,14 +63,14 @@ public class RoutesController {
 
     @GetMapping("/songs")
     public String getSongs(Model model) {
-        model.addAttribute("song", songRepository.findAll());
+        model.addAttribute("songs", songRepository.findAll());
         return "songs";
         // HTML PAGE;
     }
 
     @GetMapping("/albums/{title}")
     public String getOneAlbum(@PathVariable String title, Model model) {
-        model.addAttribute("album", albumRepository.findAlbumByTitle(title));
+        model.addAttribute("albums", albumRepository.findAlbumByTitle(title));
         return "oneAlbum";
         //HTML PAGE;
     }

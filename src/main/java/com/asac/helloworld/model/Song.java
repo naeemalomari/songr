@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Entity
 public class Song {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -24,6 +25,10 @@ public class Song {
         this.title = title;
         this.length = length;
         this.trackNumber = trackNumber;
+    }
+
+    public Album getAlbum() {
+        return album;
     }
 
     public Album getAlbum(Album album) {

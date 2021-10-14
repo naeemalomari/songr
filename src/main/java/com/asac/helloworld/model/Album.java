@@ -39,8 +39,6 @@ public class Album {
         return songsList;
     }
 
-
-
     public void setSongsList(List<Song> songsList) {
         this.songsList = songsList;
     }
