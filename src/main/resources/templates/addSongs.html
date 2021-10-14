@@ -10,10 +10,10 @@
 <form th:action="@{/albums/add/__${album.title}__}" method="post">
 
   <!-- boring html inputs! the "name" matches the @RequestParam's on the controller -->
-  <p>title</p><input type="text" name="title"/></br>
-  <p>trackNumber</p><input type="number" name="trackNumber"/></br>
-  <p>length</p><input type="number" name="length"/></br>
-  <p th:text="${'artist:  '+'  '+album.artist}" class="card-text"></p>
+  <p>title</p><input type="text" name="title"/>
+  <p>trackNumber</p><input type="number" name="trackNumber"/>
+  <p>length</p><input type="number" name="length"/>
+<!--  <p th:text="${'artist:  '+'  '+album.artist}" class="card-text"></p>-->
 
 
   <button type="submit">Submit</button>

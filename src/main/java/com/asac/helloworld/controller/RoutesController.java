@@ -82,12 +82,19 @@ public class RoutesController {
         //HTML PAGE;
     }
 
-    @PostMapping("/albums/add/{title}")
-    public RedirectView createNewSongs(@PathVariable String title, @ModelAttribute Song song){
-        Album album = albumRepository.findAlbumByTitle(title);
-
+    @PostMapping("/albums/add/{albumTitle}")
+    public RedirectView createNewSongs(@PathVariable String albumTitle, @ModelAttribute Song song) {
+        System.out.println("====================================================");
+        System.out.println(albumTitle);
+        Album album = albumRepository.findAlbumByTitle(albumTitle);
+        System.out.println("====================================================");
+        System.out.println(album);
+        System.out.println("====================================================");
         song.setAlbum(album);
-        album.setSongs(song);
+        System.out.println("====================================================");
+        album.getSongsList().add(song);
+        System.out.println(album.getSongsList());
+        System.out.println("====================================================");
 
         albumRepository.save(album);
         songRepository.save(song);

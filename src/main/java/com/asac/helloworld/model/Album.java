@@ -39,8 +39,10 @@ public class Album {
         return songsList;
     }
 
-    public void setSongs(Song song) {
-        songsList.add(song);
+
+
+    public void setSongsList(List<Song> songsList) {
+        this.songsList = songsList;
     }
 
     public Long getId() {
