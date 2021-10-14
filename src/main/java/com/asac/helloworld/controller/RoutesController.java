@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 
@@ -82,6 +83,9 @@ public class RoutesController {
         //HTML PAGE;
     }
 
+    //Osaid Alhomedy  helped me with this To make it transactional
+    @Transactional
+    //Osaid Alhomedy  helped me with this To make it transactional
     @PostMapping("/albums/add/{albumTitle}")
     public RedirectView createNewSongs(@PathVariable String albumTitle, @ModelAttribute Song song) {
         System.out.println("====================================================");
@@ -95,10 +99,8 @@ public class RoutesController {
         album.getSongsList().add(song);
         System.out.println(album.getSongsList());
         System.out.println("====================================================");
-
-        albumRepository.save(album);
         songRepository.save(song);
+        albumRepository.save(album);
         return new RedirectView("/albums");
     }
-
 }

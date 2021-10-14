@@ -18,8 +18,8 @@ public class Album {
     String imageUrl;
 
 
-    @OneToMany(mappedBy = "album")
-    List<Song> songsList;
+    @OneToMany
+    private List<Song> songsList;
 
 
     public Album(Long id, String title, String artist, int songCount, long length, String imageUrl, List<Song> songsList) {

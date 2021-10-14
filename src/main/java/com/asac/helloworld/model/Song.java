@@ -13,7 +13,7 @@ public class Song {
 
 
     @ManyToOne
-    @JoinColumn(name = "album_id")
+    @JoinColumn(name = "album_id", nullable = false)
     private Album album;
 
     String title;
