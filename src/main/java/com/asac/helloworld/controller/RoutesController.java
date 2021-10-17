@@ -70,7 +70,9 @@ public class RoutesController {
 
     @GetMapping("/albums/{title}")
     public String getOneAlbum(@PathVariable String title, Model model) {
-        model.addAttribute("albums", albumRepository.findAlbumByTitle(title));
+        Album currentAlbum = albumRepository.findAlbumByTitle(title);
+        currentAlbum.setSongsList(songRepository.findAllByalbum_id(currentAlbum.getId()));
+        model.addAttribute("albums", currentAlbum);
         return "oneAlbum";
         //HTML PAGE;
     }
@@ -78,7 +80,6 @@ public class RoutesController {
     @GetMapping("/albums/add/{title}")
     public String viewAdd(@PathVariable String title, Model model) {
         model.addAttribute("album", albumRepository.findAlbumByTitle(title));
-
         return "addSongs";
         //HTML PAGE;
     }
@@ -86,11 +87,11 @@ public class RoutesController {
     //Osaid Alhomedy  helped me with this To make it transactional
     @Transactional
     //Osaid Alhomedy  helped me with this To make it transactional
-    @PostMapping("/albums/add/{albumTitle}")
-    public RedirectView createNewSongs(@PathVariable String albumTitle, @ModelAttribute Song song) {
+    @PostMapping("/albums/add/{title}")
+    public RedirectView createNewSongs(@PathVariable String title, @ModelAttribute Song song) {
         System.out.println("====================================================");
-        System.out.println(albumTitle);
-        Album album = albumRepository.findAlbumByTitle(albumTitle);
+        System.out.println(title);
+        Album album = albumRepository.findAlbumByTitle(title);
         System.out.println("====================================================");
         System.out.println(album);
         System.out.println("====================================================");
@@ -101,6 +102,6 @@ public class RoutesController {
         System.out.println("====================================================");
         songRepository.save(song);
         albumRepository.save(album);
-        return new RedirectView("/albums");
+        return new RedirectView("/songs");
     }
 }
