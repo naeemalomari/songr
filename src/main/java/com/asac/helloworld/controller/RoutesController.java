@@ -84,22 +84,21 @@ public class RoutesController {
         //HTML PAGE;
     }
 
-    //Osaid Alhomedy  helped me with this To make it transactional
+    @GetMapping("/AddSong")
+    public RedirectView getSongs(@PathVariable Long id, @ModelAttribute Model model) {
+
+        model.addAttribute("Song", songRepository.findAllByalbum_id(id));
+        return new RedirectView("/songs");
+
+    }
+
     @Transactional
     //Osaid Alhomedy  helped me with this To make it transactional
     @PostMapping("/albums/add/{title}")
     public RedirectView createNewSongs(@PathVariable String title, @ModelAttribute Song song) {
-        System.out.println("====================================================");
-        System.out.println(title);
         Album album = albumRepository.findAlbumByTitle(title);
-        System.out.println("====================================================");
-        System.out.println(album);
-        System.out.println("====================================================");
         song.setAlbum(album);
-        System.out.println("====================================================");
         album.getSongsList().add(song);
-        System.out.println(album.getSongsList());
-        System.out.println("====================================================");
         songRepository.save(song);
         albumRepository.save(album);
         return new RedirectView("/songs");
